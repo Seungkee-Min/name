@@ -1,0 +1,40 @@
+{% extends 'shared/base.html' %}
+{% block title %}{{board.title}}{% endblock %}
+{% block style %}
+<!--        <style>-->
+<!--            h1{-->
+<!--                color: red;-->
+<!--            }-->
+<!--            pre{-->
+<!--                color: green;-->
+<!--            }-->
+<!--        </style>-->
+{% endblock %}
+{% block body %}
+        <center>
+            <div class="uk-card uk-card-default uk-card-hover uk-card-body-uk-width-1-1@1">
+                {% if board %}
+                    <h1 class="" ass="uk-card-title">{{board.title}}</h1>
+                    <pre>{{board.content}}</pre>
+                    <div>
+                        {% load disqus_tags %}
+                        {% disqus_show_comments %}
+                    </div>
+                {% else %}
+                    <p>Empty.....</p>
+                {% endif %}
+            </div>
+<!--            <ul class="uk-comment-list">-->
+<!--                {% for comment in board.comments.all %}-->
+<!--                    <li>-->
+<!--                        <article class="uk-comment">{{ comment.content }}</article>-->
+<!--                    </li>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+<!--            <form action="/app/board/{{ board.id }}/comment/new" method="post">-->
+<!--                {% csrf_token %}-->
+<!--                {{ form.as_p }}-->
+<!--                <input type="submit" value="작성">-->
+<!--            </form>-->
+        </center>
+{% endblock %}

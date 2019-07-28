@@ -1,0 +1,32 @@
+{% extends 'shared/base.html' %}
+{% block title %}목록{% endblock %}
+{% block style %}
+<!--        <style>-->
+<!--            table{-->
+<!--                text-align: center;-->
+<!--                width: 10%;-->
+<!--                border: 1px solid #444444;-->
+<!--             }-->
+<!--            tr, td{-->
+<!--                border: 1px solid #000000;-->
+<!--            }-->
+<!--        </style>-->
+{% endblock %}
+{% block body %}
+        <div style="width: 75%; text-align: right;">
+        <a href="/app/new">새로운 게시물 추가</a>
+        </div>
+        <button class="btn btn-success">ads</button>
+        <center>
+            <div style="width: 50%;">
+                <table class="uk-table uk-table-divider uk-table-striped uk-table-hover">
+                    <thead><td>#<td>제목<td></td></thead>
+                    <tbody>
+                        {% for board in boardList %}
+                            <tr><td>{{ forloop.counter }}<td><a href="/app/board/{{board.id}}">{{board.title}}</a><td><a href="/app/board/{{ board.id }}/delete">삭제</a></td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </center>
+{% endblock %}

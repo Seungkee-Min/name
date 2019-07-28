@@ -1,0 +1,65 @@
+//Colors - Any Colors You Want
+$colors: (
+  primary: #00a9e7,
+  secondary: #09e3fe,
+  success: #37ff3b,
+  danger: #ee3426,
+  warning: #e4de33,
+  info: #00a9e7,
+  light: #eee,
+  dark: #444,
+  brand-primary: #420dab,
+  brand-secondary: #36418c,
+  brand-tertiary: #c0d6e4
+);
+
+//Dark or Light background to determine text color
+@function text-color($color) {
+  @if (lightness($color) > 50) {
+    @return #000; // Lighter backgorund, return dark color
+  } @else {
+    @return #fff; // Darker background, return light color
+  }
+}
+
+//Bootstrap Button - Make Any Customizations Here
+@mixin custom-bootstrap-btns {
+  //Generates the class names via the $colors Map
+  @each $className in $colors {
+    .btn-#{nth($className, 1)} {
+      $buttonColor: nth($className, 2);
+      background: $buttonColor;
+      color: text-color($buttonColor);
+      border-color: darken($buttonColor, 5%);
+      &:hover {
+        background: lighten($buttonColor, 10%);
+        color: text-color(lighten($buttonColor, 10%));
+        border-color: $buttonColor;
+      }
+    }
+  }
+  //Button Sizes
+  .btn {
+    &-lg {
+      //Any Size Customizations here
+    }
+    &-sm {
+      //Any Size Customizations here
+    }
+    &-link {
+      //Any Customizations here
+    }
+  }
+}
+
+//Boostrap Custom Buttons Mixin Call
+@include custom-bootstrap-btns;
+
+//Layout for Pen
+body {
+  background: #222;
+}
+button {
+  margin: 10px;
+  cursor: pointer;
+}
